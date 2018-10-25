@@ -4,7 +4,8 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "standard && standard --fix",
+    "test": ""
   },
   "keywords": [],
   "author": "Carlos Alvarez <carlosxviii@gmail.com>",
