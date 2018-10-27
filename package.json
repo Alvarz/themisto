@@ -5,6 +5,7 @@
   "main": "handler.js",
   "scripts": {
     "lint": "standard && standard --fix",
+    "dev": "sls offline start --skipCacheInvalidation",
     "test": ""
   },
   "keywords": [],
