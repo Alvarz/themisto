@@ -57,6 +57,7 @@ const responseToGanymede = (order) => {
   setTimeout(() => {
     // order.products = products
     console.log(order)
+    console.log('sending back to callback url the order : ' + order._id, 'with status: ' + order.status)
 
     put(order.callbackMain, order)
       .catch(err => {

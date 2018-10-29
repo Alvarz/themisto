@@ -87,20 +87,20 @@ const crawlEasy = async (order) => {
         let priceChunks = stringPrice.split('$')
         if (priceChunks.length > 2) {
           /** has discount */
-          price = priceChunks[2]
-          originalPrice = priceChunks[1]
+          price = priceChunks[2].trim()
+          originalPrice = priceChunks[1].trim()
         } else {
           /** only full price */
-          price = priceChunks[1]
+          price = priceChunks[1].trim()
         }
 
         /** build and return the product object */
         return {
-          name: children[2].innerText,
+          name: children[2].innerText.trim(),
           link: easyURl + link,
-          price: parseFloat(price),
-          original_price: parseFloat(originalPrice),
-          description: children[2].innerText,
+          price: price,
+          original_price: originalPrice,
+          description: children[2].innerText.trim(),
           sku: null,
           category_id: '',
           related_search_queries: [],
