@@ -112,7 +112,9 @@ const crawlEasy = async (order) => {
     /** set the estatus */
     order.status = 'fulfilled'
     /** set the products */
-    order.products = productsFounded
+    order.products = productsFounded.filter((el) => {
+      return el !== null
+    })
 
     /** close the browser and return the order */
     await browser.close()

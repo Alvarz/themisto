@@ -30,23 +30,17 @@ module.exports.receive = (event, context, callback) => {
  * check if must send an order to themisto
  * @return {json} the response.
  */
-const dispatchSearchOrder = (order) => {
-  let resp = {}
+const dispatchSearchOrder = async (order) => {
   switch (order.provider) {
     case 'easy':
-      resp = searchServices.searchOnEasy(order)
-      break
+      return searchServices.searchOnEasy(order)
     case 'amazon':
-      resp = searchServices.searchOneAmazon(order)
-      break
+      return searchServices.searchOneAmazon(order)
     case 'mercado_libre':
-      resp = searchServices.searchOnML(order)
-      break
+      return searchServices.searchOnML(order)
     default:
-      resp = searchServices.searchOnEasy(order)
-      break
+      return searchServices.searchOnEasy(order)
   }
-  return resp
 }
 
 /**
@@ -56,6 +50,7 @@ const dispatchSearchOrder = (order) => {
 const responseToGanymede = (order) => {
   setTimeout(() => {
     // order.products = products
+
     console.log(order)
     console.log('sending back to callback url the order : ' + order._id, 'with status: ' + order.status)
 
