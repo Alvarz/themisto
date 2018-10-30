@@ -3,7 +3,8 @@
 /** puppteer lib */
 const puppeteer = require('puppeteer')
 /** service url to be connected */
-const easyURl = 'https://www.easy.com.ar'
+// const easyURl = 'https://www.easy.com.ar'
+const easyURl = 'https://www.easy.com.ar/tienda/es/easyar?utm_source=logoeasy&utm_medium=landing&utm_campaign=cyber2018&q=1a494861-c6a1-4d02-985b-618a6805d059&p=190951d9-9a9d-4b25-8978-e1989c9456d7&ts=1540939714&c=easyar&e=cybermonday2018&rt=Safetynet&h=5f0c2daa80e181b21a263de976e51ab3'
 
 /**
  * compute the given order crawling on easy.com.ar
@@ -94,13 +95,18 @@ const crawlEasy = async (order) => {
           price = priceChunks[1].trim()
         }
 
+        const name = children[2].innerText.trim()
+
+        if (name === '') {
+          return null
+        }
         /** build and return the product object */
         return {
-          name: children[2].innerText.trim(),
+          name: name,
           link: easyURl + link,
           price: price,
           original_price: originalPrice,
-          description: children[2].innerText.trim(),
+          description: name,
           sku: null,
           category_id: '',
           related_search_queries: [],

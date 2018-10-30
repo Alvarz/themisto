@@ -79,6 +79,9 @@ const crawlMercadoLibre = async (order) => {
         const descriptionNode = baseNode[1].firstElementChild
         let name = descriptionNode.firstElementChild.textContent
 
+        if (name === '') {
+          return null
+        }
         let price = 0
         let originalPrice = null
         /*

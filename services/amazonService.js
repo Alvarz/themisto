@@ -26,7 +26,7 @@ const crawlAmazon = async (order) => {
   // await page.screenshot({ path: 'screenshots/amazon-' + order._id + '.png' })
 
   /** event to see console logs on browser instance */
-  page.on('console', consoleObj => console.log(consoleObj.text()))
+  // page.on('console', consoleObj => console.log(consoleObj.text()))
   /** Type into search box. */
   await page.type('#twotabsearchtextbox', order.query)
   /** click on search button */
@@ -53,6 +53,12 @@ const crawlAmazon = async (order) => {
   try {
     let productsFounded = await page.evaluate(async (baseSelector, amazonURl) => {
       let selected = [...document.querySelectorAll(baseSelector)]
+
+      const parseToFloat = (amount) => {
+        return Number(parseFloat(amount)).toLocaleString('en', {
+          minimumFractionDigits: 2
+        })
+      }
 
       return selected.map(el => {
         const children = el.children
@@ -103,6 +109,10 @@ const crawlAmazon = async (order) => {
         }
 
         const name = nameNode.firstElementChild.textContent.replace('[Patrocinado]', '').trim()
+
+        if (name === '') {
+          return null
+        }
 
         if (priceNode !== null) {
           let priceBaseNode = priceNode.firstElementChild
