@@ -36,3 +36,8 @@ functions:
            cors: true
 plugins:
   - serverless-offline
+
+package:
+  individually: true
+  exclude:
+    - "doc/"
