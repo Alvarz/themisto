@@ -22,6 +22,7 @@ module.exports.auth = async (headers) => {
   let token = ckunks[1]
 
   try {
+    /** get the database instance */
     await connectToDatabase()
   } catch (err) {
     console.log(err)
@@ -30,6 +31,5 @@ module.exports.auth = async (headers) => {
 
   let count = await App.countDocuments({ token: token })
 
-  console.log(count)
   return count > 0
 }

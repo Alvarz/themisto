@@ -3,7 +3,9 @@ const { put } = require('../services/requestService')
 const searchServices = require('../services/searchServices')
 
 /**
- * check if must send an order to themisto
+ * receive the order from ganymedes
+ * @param {object} event
+ * @param {context} event
  * @return {json} the response.
  */
 module.exports.receive = async (event, context) => {
@@ -32,7 +34,7 @@ const dispatchSearchOrder = async (order) => {
     case 'easy':
       return searchServices.searchOnEasy(order)
     case 'amazon':
-      return searchServices.searchOneAmazon(order)
+      return searchServices.searchOnAmazon(order)
     case 'mercado_libre':
       return searchServices.searchOnML(order)
     default:
@@ -57,3 +59,5 @@ const responseToGanymede = (order) => {
       })
   }, 3000)
 }
+
+module.exports.responseToGanymede = responseToGanymede

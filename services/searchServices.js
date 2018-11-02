@@ -16,7 +16,7 @@ module.exports.searchOnEasy = (order) => {
  * check if must send an order to themisto
  * @return {json} the response.
  */
-module.exports.searchOneAmazon = (order) => {
+module.exports.searchOnAmazon = (order) => {
   return crawlAmazon(order)
 }
 
