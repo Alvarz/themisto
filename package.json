@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "standard && standard --fix",
     "dev": "sls offline start --skipCacheInvalidation --port 5000",
-    "test": ""
+    "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "keywords": [],
   "author": "Carlos Alvarez <carlosxviii@gmail.com>",

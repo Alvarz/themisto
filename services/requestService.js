@@ -1,5 +1,11 @@
 
 const axios = require('axios')
+const token = 'a157a344-a20f-e2fe-f5ac-1cd2dc1ac3db'
+let config = {
+  headers: {
+    Authorization: 'Bearer ' + token
+  }
+}
 
 /**
  * request to get values
@@ -7,7 +13,7 @@ const axios = require('axios')
  * @return {object} The response.
  */
 module.exports.get = (url) => {
-  return axios.get(url)
+  return axios.get(url, config)
 }
 
 /**
@@ -17,7 +23,7 @@ module.exports.get = (url) => {
  * @return {object} The response.
  */
 module.exports.post = (url, data) => {
-  return axios.post(url, data)
+  return axios.post(url, data, config)
 }
 
 /**
@@ -27,5 +33,5 @@ module.exports.post = (url, data) => {
  * @return {object} The response.
  */
 module.exports.put = (url, data) => {
-  return axios.put(url, data)
+  return axios.put(url, data, config)
 }

@@ -6,25 +6,22 @@ const searchServices = require('../services/searchServices')
  * check if must send an order to themisto
  * @return {json} the response.
  */
-module.exports.receive = (event, context, callback) => {
+module.exports.receive = async (event, context) => {
   const order = JSON.parse(event.body)
 
-  dispatchSearchOrder(order)
-    .then(response => {
-      responseToGanymede(response)
-    })
-    .catch(err => {
-      console.warn(err.message)
-    })
-
-  callback(null, {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: 'data received succefully',
-      data: order
-    })
+  try {
+    let response = await dispatchSearchOrder(order)
+    responseToGanymede(response)
+  } catch (err) {
+    console.warn(err.message)
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        message: 'data received succefully',
+        data: order
+      })
+    }
   }
-  )
 }
 /**
  * check if must send an order to themisto
