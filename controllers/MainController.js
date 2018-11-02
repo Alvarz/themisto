@@ -58,7 +58,7 @@ const responseToGanymede = (order) => {
     // order.products = products
 
     console.log(order)
-    console.log('sending back to callback url the order : ' + order._id, 'with status: ' + order.status)
+    console.log(`sending back to callback url the order :  ${order._id}, with status: ${order.status}`)
 
     /** send the order to ganymede using put */
     put(order.callbackMain, order)

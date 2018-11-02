@@ -3,24 +3,25 @@
 
 /** puppteer lib */
 const puppeteer = require('puppeteer')
-/** service url to be connected */
 
-// const amazonURl = 'https://www.amazon.es'
 /**
- * compute the given order crawling on amazon.com.ar
+ * compute the given order crawling on amazon
+ * @async
  * @param {object} order - the order to be computed
- * @return {object} the response.
+ * @return {promise} the response.
  */
 const crawlAmazon = async (order) => {
-  // order.status = 'fulfilled'
-  // order.products = products
+  /** get the url */
   const amazonURl = process.env.AMAZON_HOST
 
+  /** launch browser instance */
   const browser = await puppeteer.launch({
-    headless: true // headless or non-headless
+    headless: true /** headless or non-headless */
   })
+
   const page = await browser.newPage()
-  console.log('connecting to: ' + amazonURl + ' and searching: "' + order.query + '"')
+  console.log(`connecting to: ${amazonURl} and searching: "${order.query}"`)
+
   /** navigate to page */
   await page.goto(amazonURl)
 
@@ -53,6 +54,7 @@ const crawlAmazon = async (order) => {
   let baseSelector = '.s-item-container'
 
   try {
+    /** search for products */
     let productsFounded = await page.evaluate(async (baseSelector, amazonURl) => {
       let selected = [...document.querySelectorAll(baseSelector)]
 
@@ -62,6 +64,7 @@ const crawlAmazon = async (order) => {
         })
       }
 
+      /** map the founded nodes */
       return selected.map(el => {
         const children = el.children
 
@@ -81,15 +84,6 @@ const crawlAmazon = async (order) => {
         let image = imageLinkBase.firstElementChild.currentSrc
         /**  add image to array */
         images.push(image)
-        /*
-         * compute the price, here the price is
-         * formatted "$ priceDiscuunted $ price regular"
-         * so need be parsed to string en replace the $ git a regexp
-        */
-        // let stringPrice = String(children[6].innerText).replace(/(\r\n\t|\n|\r\t)/gm, '')
-
-        // console.log('link', link)
-        // console.log('img', image)
 
         let price = 0
         let originalPrice = null
@@ -129,20 +123,6 @@ const crawlAmazon = async (order) => {
 
         if (name === null) { return null }
 
-        /*
-         * divide it in chunk so we can know if there is only full price
-         * or it has discounts
-         * */
-        // let priceChunks = stringPrice.split('$')
-        // if (priceChunks.length > 2) {
-        /** has discount */
-        // price = priceChunks[2].trim()
-        // originalPrice = priceChunks[1].trim()
-        // } else {
-        /** only full price */
-        //  price = priceChunks[1].trim()
-        // }
-
         /** build and return the product object */
         return {
           name: name,
@@ -176,5 +156,5 @@ const crawlAmazon = async (order) => {
     return order
   }
 }
-
+/** module exports */
 module.exports = crawlAmazon

@@ -3,24 +3,21 @@
 
 /** puppteer lib */
 const puppeteer = require('puppeteer')
-/** service url to be connected */
-// const easyURl = 'https://www.easy.com.ar/tienda/es/easyar?utm_source=logoeasy&utm_medium=landing&utm_campaign=cyber2018&q=1a494861-c6a1-4d02-985b-618a6805d059&p=190951d9-9a9d-4b25-8978-e1989c9456d7&ts=1540939714&c=easyar&e=cybermonday2018&rt=Safetynet&h=5f0c2daa80e181b21a263de976e51ab3'
-
 /**
- * compute the given order crawling on easy.com.ar
+ * compute the given order crawling on easy
+ * @async
  * @param {object} order - the order to be computed
- * @return {object} the response.
+ * @return {promise} the response.
  */
 const crawlEasy = async (order) => {
-  // order.status = 'fulfilled'
-  // order.products = products
+  /** get the url */
   const easyURl = process.env.EASY_HOST
-
+  /** open a browser instance */
   const browser = await puppeteer.launch({
     headless: true // headless or non-headless
   })
   const page = await browser.newPage()
-  console.log('connecting to: ' + easyURl + ' and searching: "' + order.query + '"')
+  console.log(`connecting to: ${easyURl} and searching: "${order.query}"`)
   /** navigate to page */
   await page.goto(easyURl)
 
@@ -134,5 +131,5 @@ const crawlEasy = async (order) => {
     return order
   }
 }
-
+/** module exports */
 module.exports = crawlEasy

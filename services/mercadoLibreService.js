@@ -5,19 +5,21 @@
 const puppeteer = require('puppeteer')
 /** service url to be connected */
 /**
- * check if must send an order to themisto
- * @return {json} the response.
+ * craw for products on mercado libre
+ * @async
+ * @params {object} order
+ * @return {promise} the response.
  */
 const crawlMercadoLibre = async (order) => {
-  // order.status = 'fulfilled'
-  // order.products = products
+  /** get the url */
   const mlURl = process.env.ML_HOST
 
+  /** open the browser instance */
   const browser = await puppeteer.launch({
     headless: true // headless or non-headless
   })
   const page = await browser.newPage()
-  console.log('connecting to: ' + mlURl + ' and searching: "' + order.query + '"')
+  console.log(`connecting to: ${mlURl} and searching: "${order.query}"`)
   /** navigate to page */
   await page.goto(mlURl)
 
@@ -149,5 +151,5 @@ const crawlMercadoLibre = async (order) => {
     return order
   }
 }
-
+/** module exports */
 module.exports = crawlMercadoLibre
