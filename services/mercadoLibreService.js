@@ -3,7 +3,6 @@
 /** puppteer lib */
 const puppeteer = require('puppeteer')
 /** service url to be connected */
-const mlURl = 'https://www.mercadolibre.com.ar'
 /**
  * check if must send an order to themisto
  * @return {json} the response.
@@ -11,6 +10,7 @@ const mlURl = 'https://www.mercadolibre.com.ar'
 const crawlMercadoLibre = async (order) => {
   // order.status = 'fulfilled'
   // order.products = products
+  const mlURl = process.env.ML_HOST
 
   const browser = await puppeteer.launch({
     headless: true // headless or non-headless

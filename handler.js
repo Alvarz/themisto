@@ -4,6 +4,7 @@
 const MainCtrl = require('./controllers/MainController')
 /** .env config */
 require('dotenv').config({ path: './.env' })
+
 /** AppController instance. */
 const AppCtrl = require('./controllers/AppController')
 

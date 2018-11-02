@@ -3,8 +3,8 @@
 /** puppteer lib */
 const puppeteer = require('puppeteer')
 /** service url to be connected */
-const amazonURl = 'https://www.amazon.es'
 
+// const amazonURl = 'https://www.amazon.es'
 /**
  * compute the given order crawling on amazon.com.ar
  * @param {object} order - the order to be computed
@@ -13,6 +13,7 @@ const amazonURl = 'https://www.amazon.es'
 const crawlAmazon = async (order) => {
   // order.status = 'fulfilled'
   // order.products = products
+  const amazonURl = process.env.AMAZON_HOST
 
   const browser = await puppeteer.launch({
     headless: true // headless or non-headless

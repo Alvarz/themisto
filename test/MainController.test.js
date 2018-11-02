@@ -111,14 +111,4 @@ describe('[mainController.receive]', () => {
       .catch(() => {})
     done()
   })
-
-  it('response to ganymedes', () => {
-    event.body._id = '13445555'
-    mainCtrl.responseToGanymede(event.body)
-
-    setTimeout(() => {
-      expect(putSpy).to.be.called()
-      expect(requestService.put).not.be.spy
-    }, 3010)
-  })
 })

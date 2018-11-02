@@ -12,7 +12,7 @@
   },
   "keywords": [],
   "author": "Carlos Alvarez <carlosxviii@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-spies": "^1.0.0",
