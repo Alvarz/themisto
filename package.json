@@ -8,7 +8,7 @@
     "dev": "sls offline start --skipCacheInvalidation --port 5000",
     "test": "./node_modules/.bin/mocha --reporter spec --exit",
     "test-coverage": "./node_modules/.bin/nyc ./node_modules/.bin/mocha --reporter spec --exit",
-    "doc": "./node_modules/.bin/jsdoc -c doc.json controllers/ models/ db/ services/ utils/ --readme README.md"
+    "doc": "./node_modules/.bin/jsdoc -c doc.json controllers/ models/ db/ services/  --readme README.md"
   },
   "keywords": [],
   "author": "Carlos Alvarez <carlosxviii@gmail.com>",
