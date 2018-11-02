@@ -1,4 +1,5 @@
 'use strict'
+/** @module services/amazonService */
 
 /** puppteer lib */
 const puppeteer = require('puppeteer')

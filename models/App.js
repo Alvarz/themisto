@@ -1,4 +1,5 @@
 'use strict'
+/** @module models/App */
 
 /** Mongose lib. */
 const mongoose = require('mongoose')

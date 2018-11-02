@@ -1,4 +1,5 @@
 'use strict'
+/** @module services/mercadoLibreService */
 
 /** puppteer lib */
 const puppeteer = require('puppeteer')

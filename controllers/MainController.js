@@ -1,12 +1,16 @@
+'use strict'
+/** @module controllers/MainController */
+
 const { put } = require('../services/requestService')
 
 const searchServices = require('../services/searchServices')
 
 /**
  * receive the order from ganymedes
+ * @async
  * @param {object} event
  * @param {context} event
- * @return {json} the response.
+ * @return {promise} the response.
  */
 module.exports.receive = async (event, context) => {
   const order = JSON.parse(event.body)
@@ -26,8 +30,10 @@ module.exports.receive = async (event, context) => {
   }
 }
 /**
- * check if must send an order to themisto
- * @return {json} the response.
+ * dispatch the search order
+ * @async
+ * @param {object} order
+ * @return {promise} the response.
  */
 const dispatchSearchOrder = async (order) => {
   switch (order.provider) {
@@ -43,7 +49,8 @@ const dispatchSearchOrder = async (order) => {
 }
 
 /**
- * check if must send an order to themisto
+ * return the response back to ganymede
+ * @param {object} order
  * @return {json} the response.
  */
 const responseToGanymede = (order) => {
@@ -53,6 +60,7 @@ const responseToGanymede = (order) => {
     console.log(order)
     console.log('sending back to callback url the order : ' + order._id, 'with status: ' + order.status)
 
+    /** send the order to ganymede using put */
     put(order.callbackMain, order)
       .catch(err => {
         console.log(err)

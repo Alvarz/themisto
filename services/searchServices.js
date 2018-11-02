@@ -1,4 +1,5 @@
 'use strict'
+/** @module services/searchService */
 
 const crawlEasy = require('./easyService')
 const crawlAmazon = require('./amazonService')

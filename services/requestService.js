@@ -1,3 +1,5 @@
+'use strict'
+/** @module services/requestService */
 
 const axios = require('axios')
 const token = 'a157a344-a20f-e2fe-f5ac-1cd2dc1ac3db'

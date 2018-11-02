@@ -1,4 +1,5 @@
 'use strict'
+/** @module db/db */
 
 /** mongoose instance. */
 const mongoose = require('mongoose')

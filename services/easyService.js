@@ -1,4 +1,5 @@
 'use strict'
+/** @module services/easyService */
 
 /** puppteer lib */
 const puppeteer = require('puppeteer')

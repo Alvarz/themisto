@@ -1,3 +1,4 @@
+'use strict'
 /** @module services/validationservice */
 
 /** @module statuses enum array */
